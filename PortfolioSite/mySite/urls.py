@@ -4,4 +4,5 @@ from mySite import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('repo', views.repo, name='repo'),
 ]

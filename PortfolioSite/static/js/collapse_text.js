@@ -6,11 +6,12 @@ cButton.addEventListener("click",function(){
 	cButton.classList.remove("rotate-arrow");
 	void cButton.offsetWidth;
 	cButton.classList.add("rotate-arrow");
-	if(cImage.style.display == "none"){
-		cImage.style.display = "block";
-		eImage.style.display = "none";
-	}else{
+	if(cImage.style.display == "block"){
 		eImage.style.display = "block";
 		cImage.style.display = "none";
+		
+	}else{
+		cImage.style.display = "block";
+		eImage.style.display = "none";
 	}
 });
