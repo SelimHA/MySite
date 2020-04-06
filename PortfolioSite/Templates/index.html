@@ -5,10 +5,10 @@
 {% endblock %}
 
 {% block bodyblock%}
-<div class = "form contentBox">
+<div class = "form contentBox acrylic dropshadow ">
 	<h3>Hello, welcome to my portfolio site</h3>
 </div>
-<div class = "form contentBox">
+<div class = "form contentBox acrylic dropshadow ">
 	<div class="row">
 	<div class="col-md-4">
 		<img src="{% static 'images/me.png'%}" class="img-fluid"/>
@@ -20,9 +20,9 @@
 	</div>
 </div>
 
-<div class = "form contentBox">
+<div class = "form contentBox acrylic dropshadow ">
 	<h3>My Coding Statistics</h3>
-	<div id="piechart"></div>
+	<div id="piechart" style="width:100%; height: 500px;"></div>
 </div>
 
 
@@ -42,7 +42,7 @@ function drawChart() {
 ]);
 
   // Optional; add a title and set the width and height of the chart
-  var options = {'width':550, 'height':400, 'backgroundColor': 'transparent','is3D':true, legendTextStyle: {color:'#FFFFFF'},titleTextStyle: {color:'#FFFFFF'},};
+  var options = {'backgroundColor': 'transparent','is3D':true, legendTextStyle: {color:'#FFFFFF'},titleTextStyle: {color:'#FFFFFF'},};
 
   // Display the chart inside the <div> element with id="piechart"
   var chart = new google.visualization.PieChart(document.getElementById('piechart'));

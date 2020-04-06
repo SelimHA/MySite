@@ -39,7 +39,7 @@ def getContributors(urlAddress):
 def getAllProjectDetails():
         toReturn = []
         for el in repoDict:
-                cur={"Name":el["full_name"],"Contributors":getContributors(el["contributors_url"]),"Description":el["description"]}
+                cur={"Name":el["full_name"],"Contributors":getContributors(el["contributors_url"]),"Description":el["description"],"Link":el["html_url"]}
                 toReturn.append(cur)
         return toReturn        
 
@@ -48,4 +48,4 @@ def getAllProjectDetails():
 session=gitConnect()
 #Get dictionary
 repoDict = getDictionary()
-pprint.pprint(getAllProjectDetails())
+pprint.pprint(repoDict)
