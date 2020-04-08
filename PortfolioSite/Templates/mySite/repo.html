@@ -7,14 +7,24 @@
 {% block bodyblock%}
 <div class = "form contentBox acrylic">
 	<h3>Repository</h3>
-	{%for el in project_data%}
-		<a href="{{el.Link}}"><h4>{{el.Name}}</h4></a>
-		{%for curContrib in el.Contributors %}
-			<p>{{curContrib.Name}}   Commits: {{curContrib.Contribution}}</p>
+	<div class="list-group">
+		{%for el in project_data%}
+			<a href="{{el.Link}}" class="list-group-item list-group-item-action flex-column align-items-start list-group-custom">
+					<h4>{{el.Name}}</h4>
+					<div class = "row">
+					<div class="col-md-1">
+						<i class="{{el.language_icon}}" style="font-size: 40px;"></i>
+					</div>
+					<div class="col-md-11">
+						{%for curContrib in el.Contributors %}
+							<p>{{curContrib.Name}}   Commits: {{curContrib.Contribution}}</p>
+						{%endfor%}
+						<p>{{el.Description}}</p>
+					</div>
+					</div>
+			</a>
 		{%endfor%}
-		<p>{{el.Description}}</p>
-		<hr>
-	{%endfor%}
+	</div>
 </div>
 
 {% endblock %}

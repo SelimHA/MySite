@@ -31,3 +31,12 @@ p, h3{
 	color: white;
 }
 
+.list-group-custom{
+	background-color: rgba(0, 0, 0, 0);
+	transition: 0.3s;
+}
+
+.list-group-custom:hover{
+	background-color: rgba(148, 148, 148, 0.3);
+	font-size: 125%;
+}

@@ -2,7 +2,6 @@ import requests
 import json
 import pprint
 
-
 # creates a requests session
 def gitConnect():
         with open('git.key') as f:
@@ -36,13 +35,29 @@ def getContributors(urlAddress):
                 contributorList.append(curDict)
         return contributorList
 
+def getIcon(languageName):
+        if(languageName=="Java"):
+                return "fab fa-java"
+        elif(languageName=="Python"):
+                return "fab fa-python"
+        elif(languageName=="HTML"):
+                 return "fab fa-html5"
+        elif(languageName=="Kotlin"):
+                return "fab fa-android"
+        elif(languageName=="Swift"):
+                return "fas fa-apple-alt"
+        elif(languageName=="C" or languageName=="C++" or languageName=="C#"):
+                return "fab fa-cuttlefish"
+        else:
+                return "fas fa-file"
+
 def getAllProjectDetails():
         toReturn = []
         for el in repoDict:
-                cur={"Name":el["full_name"],"Contributors":getContributors(el["contributors_url"]),"Description":el["description"],"Link":el["html_url"]}
+                language_icon = getIcon(el["language"])
+                cur={"Name":el["full_name"],"Contributors":getContributors(el["contributors_url"]),"Description":el["description"],"Link":el["html_url"],"language":el["language"],"language_icon":language_icon}
                 toReturn.append(cur)
         return toReturn        
-
 
 #Get session
 session=gitConnect()
