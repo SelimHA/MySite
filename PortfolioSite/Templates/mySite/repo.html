@@ -24,6 +24,19 @@
 					</div>
 			</a>
 		{%endfor%}
+		<div class="btn-group d-flex w-50 text-center center-div" role="group">
+			{% if project_data.has_previous %}
+				<a class="button" href="?page=1">first</a>
+				<a class="button" href="?page={{ project_data.previous_page_number }}">previous</a>
+			{% endif %}
+				<a class="button" href="#">{{ project_data.number }} of {{ project_data.paginator.num_pages }}.</a>
+			
+			{% if project_data.has_next %}
+				<a class="button" href="?page={{ project_data.next_page_number }}">next</a>
+				<a class="button" href="?page={{ project_data.paginator.num_pages }}">last</a>
+			{% endif %}
+
+		</div>
 	</div>
 </div>
 
