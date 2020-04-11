@@ -10,16 +10,16 @@
 	<div class="list-group">
 		{%for el in project_data%}
 			<a href="{{el.Link}}" class="list-group-item list-group-item-action flex-column align-items-start list-group-custom">
-					<h4>{{el.Name}}</h4>
+					<h4>{{el.name}}</h4>
 					<div class = "row">
 					<div class="col-md-1">
 						<i class="{{el.language_icon}}" style="font-size: 40px;"></i>
 					</div>
 					<div class="col-md-11">
-						{%for curContrib in el.Contributors %}
-							<p>{{curContrib.Name}}   Commits: {{curContrib.Contribution}}</p>
+						{%for curContrib in el.contributors %}
+							<p>{{curContrib.name}}   Commits: {{curContrib.contribution}}</p>
 						{%endfor%}
-						<p>{{el.Description}}</p>
+						<p>{{el.description}}</p>
 					</div>
 					</div>
 			</a>

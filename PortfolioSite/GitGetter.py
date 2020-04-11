@@ -1,6 +1,11 @@
+import os, django
+os.environ.setdefault('DJANGO_SETTINGS_MODULE','PortfolioSite.settings')
+django.setup()
+
 import requests
 import json
 import pprint
+from mySite.models import repoContent, contributors
 
 # creates a requests session
 def gitConnect():
@@ -52,15 +57,21 @@ def getIcon(languageName):
                 return "fas fa-file"
 
 def getAllProjectDetails():
-        toReturn = []
+        repoContent.objects.all().delete()
+        contributors.objects.all().delete()
         for el in repoDict:
-                language_icon = getIcon(el["language"])
-                cur={"Name":el["full_name"],"Contributors":getContributors(el["contributors_url"]),"Description":el["description"],"Link":el["html_url"],"language":el["language"],"language_icon":language_icon}
-                toReturn.append(cur)
-        return toReturn        
-
+                title = el["full_name"]
+                contributor_list = getContributors(el["contributors_url"])
+                pprint.pprint(contributor_list)
+                description = el["description"]
+                link = el["html_url"]
+                language = el["language"]
+                repoContent.objects.get_or_create(title=title,language=language, link=link, description=description, date_created="")[0]
+                for contrib in contributor_list:
+                        contributors.objects.get_or_create(title=el["full_name"], contribName = contrib["Name"], commits = str(contrib["Contribution"]))[0]
 #Get session
 session=gitConnect()
 #Get dictionary
 repoDict = getDictionary()
 pprint.pprint(repoDict)
+getAllProjectDetails()
