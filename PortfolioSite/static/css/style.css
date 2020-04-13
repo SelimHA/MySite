@@ -40,3 +40,7 @@ p, h3{
 	background-color: rgba(148, 148, 148, 0.3);
 	font-size: 125%;
 }
+
+.greycontent{
+	color: rgb(50,50,50);
+}

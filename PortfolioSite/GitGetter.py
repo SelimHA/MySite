@@ -5,7 +5,7 @@ django.setup()
 import requests
 import json
 import pprint
-from mySite.models import repoContent, contributors
+from mySite.models import repoContent, contributors, Languages
 
 # creates a requests session
 def gitConnect():
@@ -22,15 +22,13 @@ def getLanguages(dictEl):
         return json.loads(session.get(dictEl["languages_url"]).content)
 
 def getTotalLanguages():
-        toReturn = {}
         for i in repoDict:
                 curDictEl = getLanguages(i)
                 for key, value in curDictEl.items():
-                        if(key in toReturn.keys()):
-                                toReturn[key]+=value
-                        else:
-                                toReturn[key]=value
-        return toReturn
+                        curLang = Languages.objects.get_or_create(language = key)
+                        print(curLang)
+                        curLang.usage =  value
+                        curLang.save(['usage'])
 
 def getContributors(urlAddress):
         tempList = json.loads(session.get(urlAddress).content)
@@ -66,12 +64,13 @@ def getAllProjectDetails():
                 description = el["description"]
                 link = el["html_url"]
                 language = el["language"]
-                repoContent.objects.get_or_create(title=title,language=language, link=link, description=description, date_created="")[0]
+                curRepo = repoContent.objects.get_or_create(title=title,language=language, link=link, description=description, date_created="")[0]
                 for contrib in contributor_list:
-                        contributors.objects.get_or_create(title=el["full_name"], contribName = contrib["Name"], commits = str(contrib["Contribution"]))[0]
+                        contributors.objects.get_or_create(title=curRepo, contribName = contrib["Name"], commits = str(contrib["Contribution"]))[0]
 #Get session
 session=gitConnect()
 #Get dictionary
 repoDict = getDictionary()
 pprint.pprint(repoDict)
 getAllProjectDetails()
+getTotalLanguages()

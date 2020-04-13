@@ -33,3 +33,10 @@ class contributors(models.Model):
     commits = models.CharField(max_length=TITLE_MAX_LENGTH, default="0")
     def __str__(self):
         return f"{self.id}: {self.title}"
+
+class Languages(models.Model):
+    TITLE_MAX_LENGTH = 256
+    language = models.CharField(max_length=TITLE_MAX_LENGTH, null=True,default="File")
+    usage = models.IntegerField(default=0)
+    def __str__(self):
+        return f"{self.id}: {self.language}"
