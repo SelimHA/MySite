@@ -16,26 +16,26 @@
 						<i class="{{el.language_icon}}" style="font-size: 40px;"></i>
 					</div>
 					<div class="col-md-11">
-						<p>{{el.description}}</p>
+						<p class=magnify>{{el.description}}</p>
 						<div style="display: inline-block">
 						{%for curContrib in el.contributors %}
-							<div class="greycontent">{{curContrib.name}}   Commits: {{curContrib.contribution}}</div>
+							<div class="greycontent">{{curContrib.name}}   <i class="fas fa-code"></i> {{curContrib.contribution}}%</div>
 						{%endfor%}
 						</div>
 					</div>
 					</div>
 			</a>
 		{%endfor%}
-		<div class="btn-group d-flex w-50 text-center center-div" role="group">
+		<div class="btn-group d-flex text-center center-div" role="group">
 			{% if project_data.has_previous %}
-				<a class="button" href="?page=1">first</a>
-				<a class="button" href="?page={{ project_data.previous_page_number }}">previous</a>
+				<a class="button reveal" href="?page=1">first</a>
+				<a class="button reveal" href="?page={{ project_data.previous_page_number }}">previous</a>
 			{% endif %}
 				<a class="button" href="#">{{ project_data.number }} of {{ project_data.paginator.num_pages }}.</a>
 			
 			{% if project_data.has_next %}
-				<a class="button" href="?page={{ project_data.next_page_number }}">next</a>
-				<a class="button" href="?page={{ project_data.paginator.num_pages }}">last</a>
+				<a class="button reveal" href="?page={{ project_data.next_page_number }}">next</a>
+				<a class="button reveal" href="?page={{ project_data.paginator.num_pages }}">last</a>
 			{% endif %}
 
 		</div>

@@ -19,7 +19,7 @@ def getTotalLanguages(languages):
 def repo(request):
     data = repoContent.objects.all()
     data_list = createDict(data)
-    paginator = Paginator(data_list, 1)
+    paginator = Paginator(data_list, 4)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context_dict ={"project_data": page_obj}
@@ -52,11 +52,15 @@ def createDict(data):
         cur_dict["date"]=cur.date_created
         contribs = contributors.objects.all().filter(title=cur)
         cur_contribs = []
+        total_commits = 0
         for cur_contrib in contribs:
             contrib_dict = {}
             contrib_dict["name"]=cur_contrib.contribName
-            contrib_dict["contribution"]=cur_contrib.commits
+            total_commits=total_commits+int(cur_contrib.commits)
+            contrib_dict["commits"]=cur_contrib.commits
             cur_contribs.append(contrib_dict)
+        for cur in cur_contribs:
+            cur["contribution"]=int((int(cur["commits"])/total_commits)*100)
         cur_dict["contributors"]= cur_contribs
         data_list.append(cur_dict)
     return data_list
