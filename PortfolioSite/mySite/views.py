@@ -26,8 +26,8 @@ def repo(request):
     return render(request, 'mySite/repo.html', context_dict)
 
 def curprojects(request):
-    context_dict = {"project":[]}
     projects = Project.objects.all()
+    project_list = []
     for project in projects:
         curProject = {}
         curProject["name"] = project.title
@@ -35,7 +35,11 @@ def curprojects(request):
         curProject["language_icon"]= getIcon(project.language)
         images = projectImage.objects.all().filter(title=project)
         curProject["images"]=images
-        context_dict["project"].append(curProject)
+        project_list.append(curProject)
+    paginator = Paginator(project_list, 1)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context_dict = {"project":page_obj}
     return render(request, 'mySite/current_projects.html', context_dict)
 
 def createDict(data):

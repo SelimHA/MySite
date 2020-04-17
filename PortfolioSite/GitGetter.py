@@ -25,10 +25,10 @@ def getTotalLanguages():
         for i in repoDict:
                 curDictEl = getLanguages(i)
                 for key, value in curDictEl.items():
-                        curLang = Languages.objects.get_or_create(language = key)
+                        curLang = Languages.objects.get_or_create(language = key)[0]
                         print(curLang)
-                        curLang.usage =  value
-                        curLang.save(['usage'])
+                        curLang.usage =  curLang.usage  + value
+                        curLang.save()
 
 def getContributors(urlAddress):
         tempList = json.loads(session.get(urlAddress).content)
