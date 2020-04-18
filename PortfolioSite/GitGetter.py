@@ -6,7 +6,7 @@ import requests
 import json
 import pprint
 from mySite.models import repoContent, contributors, Languages
-
+from dateutil.parser import parse
 # creates a requests session
 def gitConnect():
         with open('git.key') as f:
@@ -64,7 +64,9 @@ def getAllProjectDetails():
                 description = el["description"]
                 link = el["html_url"]
                 language = el["language"]
-                curRepo = repoContent.objects.get_or_create(title=title,language=language, link=link, description=description, date_created="")[0]
+                created = parse(el["created_at"])
+                updated = parse(el["updated_at"])
+                curRepo = repoContent.objects.get_or_create(title=title,language=language, link=link, description=description, date_created=created, date_updated=updated)[0]
                 for contrib in contributor_list:
                         contributors.objects.get_or_create(title=curRepo, contribName = contrib["Name"], commits = str(contrib["Contribution"]))[0]
 #Get session

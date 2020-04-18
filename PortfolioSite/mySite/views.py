@@ -49,7 +49,8 @@ def createDict(data):
         cur_dict["name"]=cur.title
         cur_dict["language_icon"]=getIcon(cur.language)
         cur_dict["description"]=cur.description
-        cur_dict["date"]=cur.date_created
+        cur_dict["created"]=cur.date_created
+        cur_dict["updated"]=cur.date_updated
         contribs = contributors.objects.all().filter(title=cur)
         cur_contribs = []
         total_commits = 0
