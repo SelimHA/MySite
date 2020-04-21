@@ -10,6 +10,9 @@ def index(request):
     context_dict = {"languages":getTotalLanguages(languages)}
     return render(request, 'index.html', context_dict) 
 
+def about(request):
+    return render(request, 'mySite/about.html') 
+
 def getTotalLanguages(languages):
     dictReturn = {}
     for curLang in languages:
