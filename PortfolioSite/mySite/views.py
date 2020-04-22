@@ -38,7 +38,13 @@ def curprojects(request):
         curProject["details"] = project.text
         curProject["language_icon"]= getIcon(project.language)
         images = projectImage.objects.all().filter(title=project)
-        curProject["images"]=images
+        curProject["fImage"]=""
+        if(len(images)>0):
+            curProject["fImage"]=images[0]
+        if(len(images)<2):
+             curProject["images"]=[]
+        else:
+            curProject["images"]=images[1:]
         project_list.append(curProject)
     paginator = Paginator(project_list, 1)
     page_number = request.GET.get('page')

@@ -39,7 +39,7 @@ p, h3{
 .list-group-custom:hover{
 	background-color: rgba(220, 220, 220, 0.3);
 	font-size: 110%;
-	padding: 50px;
+	padding: 30px;
 }
 
 .greycontent{
