@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.conf import settings
 from mySite.models import projectImage, Project, repoContent, contributors, Languages
 from django.core.paginator import Paginator
+
 # Create your views here.
 def index(request):
     languages = Languages.objects.all()
