@@ -20,7 +20,7 @@ class repoContent(models.Model):
     title = models.CharField(max_length=TITLE_MAX_LENGTH, default ="No title")
     language=models.CharField(max_length=TITLE_MAX_LENGTH, null=True,default="File")
     description = models.TextField(default="Missing description")
-    link = models.TextField("#")
+    link = models.TextField(default="#")
     date_created = models.DateTimeField(default = datetime.now)
     date_updated = models.DateTimeField(default = datetime.now)
     def __str__(self): 
