@@ -61,6 +61,7 @@ def createDict(data):
         cur_dict["description"]=cur.description
         cur_dict["created"]=cur.date_created
         cur_dict["updated"]=cur.date_updated
+        cur_dict["link"]=cur.link
         contribs = contributors.objects.all().filter(title=cur)
         cur_contribs = []
         total_commits = 0
