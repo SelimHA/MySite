@@ -48,3 +48,18 @@ p, h3{
 .center-div{
 	margin: auto;
 }
+
+.socIcon{
+	color: white;
+	font-size: 50px;
+	transition: 0.3s;
+}
+
+.socIcon:hover{
+	color: rgb(180,180,180);
+}
+
+.iconRow{
+	margin: auto;
+	max-width: 400px;
+}
